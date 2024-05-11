@@ -2,20 +2,20 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Request;
+
 class BoardServices
 {
     /**
      * Create a new class instance.
      */
-    protected $name;
-    
-    public function __construct()
-    {
-        $this->name = "First Diuty";
-    }
+    protected $requestData;
 
-    public function get()
+    public function processRequest(Request $request)
     {
-        return $this->name;
+        $requestData = $request->all();
+        dd($requestData);
+        
+        // انجام دیگر عملیات با مقادیر ریکوئست
     }
 }
