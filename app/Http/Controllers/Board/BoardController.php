@@ -6,19 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Board\BoardInterface;
 use App\Services\BoardServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class BoardController extends Controller
 {
     protected $boardInterface;
+    protected $boardService;
 
-    public function index(BoardServices $board)
+    public function __construct(BoardInterface $boardInterface, BoardServices $boardService)
     {
-        return "my Board is :" . $board->get();
-    }
-
-    public function __construct(BoardInterface $boardInterface)
-    {
-        $this->boardInterface = $boardInterface;        
+        $this->boardInterface = $boardInterface; 
+        $this->boardService = $boardService;       
     }
 
     /**
@@ -26,10 +24,10 @@ class BoardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     //
-    // }
+    public function index()
+    {
+        //
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -49,7 +47,7 @@ class BoardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->boardService->processRequest($request);
     }
 
     /**
