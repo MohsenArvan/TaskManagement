@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Board extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'user_id',
+        'color',
+        'status',
+        'due_date',
+        'completed_at',
+        'priority'
+
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
