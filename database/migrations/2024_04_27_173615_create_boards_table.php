@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('boards', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->foreignId('user_id')->constrained();
+            $table->string('color')->default('gray');
+            $table->string('status')->default('active');
+            $table->dateTime('due_date')->nullable();
+            $table->dateTime('completed_at')->nullable();
+            $table->string('priority')->default('low');
             $table->timestamps();
         });
     }
