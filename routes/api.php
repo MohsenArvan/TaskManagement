@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BoardController;
+use App\Http\Controllers\Board\BoardController;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
@@ -11,5 +11,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function(){
     // Route::apiResource('board', BoardController::class);
-    Route::resource('board', BoardController::class);
 });
+Route::apiResource('board', BoardController::class);
+
+require __DIR__.'/auth.php';
