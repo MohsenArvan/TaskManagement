@@ -11,7 +11,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function(){
     // Route::apiResource('board', BoardController::class);
+    Route::apiResource('board', BoardController::class);
 });
-Route::apiResource('board', BoardController::class);
 
 require __DIR__.'/auth.php';
