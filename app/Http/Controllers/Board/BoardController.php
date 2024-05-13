@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Board;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBoardRequest;
 use App\Repositories\Board\BoardInterface;
 use App\Services\BoardServices;
 use Illuminate\Http\Request;
@@ -10,14 +11,14 @@ use Illuminate\Support\Facades\App;
 
 class BoardController extends Controller
 {
-    protected $boardInterface;
-    protected $boardService;
+    // protected $boardInterface;
+    // protected $boardService;
 
-    public function __construct(BoardInterface $boardInterface, BoardServices $boardService)
-    {
-        $this->boardInterface = $boardInterface; 
-        $this->boardService = $boardService;       
-    }
+    // public function __construct(BoardInterface $boardInterface, BoardServices $boardService)
+    // {
+    //     $this->boardInterface = $boardInterface; 
+    //     $this->boardService = $boardService;       
+    // }
 
     /**
      * Display a listing of the resource.
@@ -28,26 +29,16 @@ class BoardController extends Controller
     {
         //
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBoardRequest $request)
     {
-        $this->boardService->processRequest($request);
+        // dd($request->all());
+        app(BoardServices::class)->StoreBoard($request);
     }
 
     /**
@@ -57,17 +48,6 @@ class BoardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }

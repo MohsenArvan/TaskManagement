@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreBoardRequest;
+use App\Repositories\Board\BoardInterface;
 
 class BoardServices
 {
@@ -11,11 +12,12 @@ class BoardServices
      */
     protected $requestData;
 
-    public function processRequest(Request $request)
+    public function StoreBoard(StoreBoardRequest $request)
     {
-        $requestData = $request->all();
-        dd($requestData);
-        
-        // انجام دیگر عملیات با مقادیر ریکوئست
+        $data = $request->input();
+        $data['user_id'] = auth()->user()->id;
+
+        return app(BoardInterface::class)->create($data);
     }
+
 }
