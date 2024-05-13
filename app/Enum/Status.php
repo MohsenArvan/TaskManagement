@@ -4,8 +4,8 @@ namespace App\Enum;
 
 enum Status: string
 {
-    const ACTIVE = 'active';
-    const INACTIVE = 'inactive';
-    const PENDING = 'pending';
-    const DELETED = 'deleted';
+    case ACTIVE = 'active';
+    case INACTIVE = 'inactive';
+    case PENDING = 'pending';
+    case DELETED = 'deleted';
 }

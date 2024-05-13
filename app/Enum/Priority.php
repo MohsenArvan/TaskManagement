@@ -4,10 +4,10 @@ namespace App\Enum;
 
 enum Priority: string
 {
-    const LOW = 'low';
-    const MEDIUM = 'medium';
-    const HIGH = 'high';
-    const URGENT = 'urgent';
-    const IMMEDIATE = 'Relatively immediate';
+    case LOW = 'low';
+    case MEDIUM = 'medium';
+    case HIGH = 'high';
+    case URGENT = 'urgent';
+    case IMMEDIATE = 'Relatively immediate';
 
 }
