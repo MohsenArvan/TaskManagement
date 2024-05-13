@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Board;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBoardRequest;
+use App\Http\Requests\UpdateBoardRequest;
 use App\Repositories\Board\BoardInterface;
 use App\Services\BoardServices;
 use Illuminate\Http\Request;
@@ -11,14 +12,6 @@ use Illuminate\Support\Facades\App;
 
 class BoardController extends Controller
 {
-    // protected $boardInterface;
-    // protected $boardService;
-
-    // public function __construct(BoardInterface $boardInterface, BoardServices $boardService)
-    // {
-    //     $this->boardInterface = $boardInterface; 
-    //     $this->boardService = $boardService;       
-    // }
 
     /**
      * Display a listing of the resource.
@@ -27,7 +20,9 @@ class BoardController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = auth()->user()->id;
+        // dd($user_id);
+        return app(BoardServices::class)->GetAllBoards($user_id);
     }
     /**
      * Store a newly created resource in storage.
@@ -37,8 +32,10 @@ class BoardController extends Controller
      */
     public function store(StoreBoardRequest $request)
     {
-        // dd($request->all());
-        app(BoardServices::class)->StoreBoard($request);
+        $data = $request->validated();
+
+        app(BoardServices::class)->StoreBoard($data);
+
     }
 
     /**
@@ -49,7 +46,11 @@ class BoardController extends Controller
      */
     public function show($id)
     {
-        //
+        app(BoardServices::class)->ShowBoard($id);
+
+        return response()->json([
+            'data' => app(BoardServices::class)->ShowBoard($id)
+        ], 200);
     }
 
     /**
@@ -59,9 +60,14 @@ class BoardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBoardRequest $request, $id)
     {
-        //
+        $data = $request->validated();
+        app(BoardServices::class)->UpdateBoard($data, $id);
+
+        return response()->json([
+            'data' => app(BoardServices::class)->ShowBoard($id)
+        ], 200);
     }
 
     /**
@@ -72,6 +78,10 @@ class BoardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        app(BoardServices::class)->DeleteBoard($id);
+
+        return response()->json([
+            'message' => 'Board deleted successfully'
+        ], 200);
     }
 }
