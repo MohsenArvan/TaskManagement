@@ -2,7 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Enum\Color;
+use App\Enum\Priority;
+use App\Enum\Status;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdateBoardRequest extends FormRequest
 {
@@ -11,7 +15,7 @@ class UpdateBoardRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +26,13 @@ class UpdateBoardRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'string|max:100',
+            'description' => 'string|max:500',
+            'color' => [new Enum(Color::class)],
+            'status' => [new Enum(Status::class)],
+            'due_date' => 'nullable|date',
+            'priority' => [new Enum(Priority::class)],
+            'complate_at' => 'nullable|date'
         ];
     }
 }
