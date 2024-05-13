@@ -14,7 +14,6 @@ class BoardRepository extends BaseRepository implements BoardInterface
 
     public function getBoards($user_id)
     {
-        // dd($user_id);
         return $this->model->where('user_id', $user_id)->get();
     }
 

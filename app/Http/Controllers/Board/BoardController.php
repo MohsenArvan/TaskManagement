@@ -21,7 +21,7 @@ class BoardController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        // dd($user_id);
+        
         return app(BoardServices::class)->GetAllBoards($user_id);
     }
     /**
