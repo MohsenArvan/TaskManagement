@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Repositories\Board\BoardInterface;
 use App\Repositories\Board\BoardRepository;
+use App\Services\BoardServiceInterface;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Laravel\Sanctum\PersonalAccessToken;
 use Illuminate\Support\ServiceProvider;
@@ -17,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(BoardServices::class, function($app){
+        $this->app->bind(BoardServiceInterface::class, function($app){
             return new BoardServices();
         });
 

@@ -8,7 +8,7 @@ use App\Repositories\Board\BoardInterface;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request as HttpRequest;
 
-class BoardServices
+class BoardServices implements BoardServiceInterface
 {
     /**
      * Create a new class instance.
