@@ -2,11 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Requests\StoreBoardRequest;
-use App\Http\Requests\UpdateBoardRequest;
 use App\Repositories\Board\BoardInterface;
-use GuzzleHttp\Psr7\Request;
-use Illuminate\Http\Request as HttpRequest;
 
 class BoardServices implements BoardServiceInterface
 {
