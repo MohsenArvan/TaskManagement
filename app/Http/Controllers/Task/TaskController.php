@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Task;
 
+use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Services\Task\TaskServiceInterface;
+
+// use App\Services\Task\TaskServices;
 
 class TaskController extends Controller
 {
@@ -13,7 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return app(TaskServiceInterface::class)->index();
     }
 
     /**
