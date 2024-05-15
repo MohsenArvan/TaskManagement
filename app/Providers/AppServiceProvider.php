@@ -9,6 +9,8 @@ use Illuminate\Auth\Notifications\ResetPassword;
 use Laravel\Sanctum\PersonalAccessToken;
 use Illuminate\Support\ServiceProvider;
 use App\Services\BoardServices;
+use App\Services\Task\TaskServiceInterface;
+use App\Services\Task\TaskServices;
 use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(BoardInterface::class, function(){
             return new BoardRepository();
+        });
+
+        $this->app->bind(TaskServiceInterface::class, function($app){
+            return new TaskServices();
         });
     }
 
