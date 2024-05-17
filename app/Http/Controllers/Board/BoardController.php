@@ -5,11 +5,7 @@ namespace App\Http\Controllers\Board;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBoardRequest;
 use App\Http\Requests\UpdateBoardRequest;
-use App\Repositories\Board\BoardInterface;
 use App\Services\BoardServiceInterface;
-use App\Services\BoardServices;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class BoardController extends Controller
 {
