@@ -15,56 +15,43 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($board_id)
     {
-        return app(TaskServiceInterface::class)->index();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return app(TaskServiceInterface::class)->getAllTask($board_id);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request, $board_id)
     {
-        //
+        $data = $request->validated();
+
+        return app(TaskServiceInterface::class)->storeTask($data, $board_id);   
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Task $task)
+    public function show($task)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
-    {
-        //
+        return app(TaskServiceInterface::class)->showTask($task);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, $task_id)
     {
-        //
+        $data = $request->validated();
+        return app(TaskServiceInterface::class)->updateTask($data, $task_id);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy($board_id, $task_id)
     {
-        //
+        return app(TaskServiceInterface::class)->destroy($task_id);
     }
 }
