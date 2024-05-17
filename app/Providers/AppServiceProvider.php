@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use App\Repositories\Board\BoardInterface;
 use App\Repositories\Board\BoardRepository;
+use App\Repositories\RepositoryInterface;
+use App\Repositories\Task\TaskInterface;
+use App\Repositories\Task\TaskRepository;
 use App\Services\BoardServiceInterface;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -30,6 +33,14 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(TaskServiceInterface::class, function($app){
             return new TaskServices();
+        });
+
+        $this->app->bind(TaskInterface::class, function(){
+            return new TaskRepository();
+        });
+
+        $this->app->bind(RepositoryInterface::class, function(){
+            return new BoardRepository();
         });
     }
 
