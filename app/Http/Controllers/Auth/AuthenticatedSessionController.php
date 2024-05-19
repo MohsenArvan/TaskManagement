@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Notifications\UserLogin;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,8 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        // $request->session()->regenerate();
+        $message = 'Logged in';
+        $request->user()->notify(new UserLogin($message));
 
         $token = $request->user()->createToken('authToken');
 

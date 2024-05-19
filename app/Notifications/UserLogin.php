@@ -14,9 +14,9 @@ class UserLogin extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($message)
     {
-        //
+        // dd($message);
     }
 
     /**
@@ -36,7 +36,7 @@ class UserLogin extends Notification
     {
         return (new MailMessage)
                     ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->action('Notification Action', url('/api/login'))
                     ->line('Thank you for using our application!');
     }
 
